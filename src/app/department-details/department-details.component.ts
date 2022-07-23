@@ -4,8 +4,16 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
   selector: 'app-department-details',
   template: `
 <h3>You selected department with id = {{departmentId}}</h3>
-<a (click)="gopervisous()">Pervisous</a>
-<a (click)="gonext()">Next</a>
+
+<p>
+  <button (click)="showOverview()">Overview</button>
+  <button (click)="showcontact()">Contact</button>
+</p>
+<router-outlet></router-outlet>
+<p>
+<button (click)="gopervisous()">Pervisous</button>
+<button (click)="gonext()">Next</button>
+</p>
 <div>
   <button (click)="ondepartment()">Back</button>
 </div>
@@ -37,5 +45,12 @@ gonext(){
 ondepartment(){
   let selectedId = this.departmentId ? this.departmentId : null;
   this.router.navigate(['/departments', {id: selectedId,test:'testvalue'}]);
+}
+showOverview(){
+this.router.navigate(['overview'], {relativeTo: this.route});
+}
+showcontact(){
+  this.router.navigate(['contact'], {relativeTo: this.route});
+
 }
 }
